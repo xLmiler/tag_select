@@ -10,7 +10,7 @@ from search import search_blueprint
 app = Flask(__name__)
 CORS(app)  # 允许所有跨域请求
 TAG_JSON_DIR = os.path.join(os.getcwd(), 'public', 'TagJson')
-
+port = os.getenv("PORT",7860)
 TURNSTILE_SECRET_KEY = "xxx" 
 
 app.register_blueprint(search_blueprint, url_prefix='/search')
@@ -117,4 +117,4 @@ def serve_json_file(filename):
 
 if __name__ == '__main__':
     # 运行Flask应用
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)
